@@ -8,7 +8,7 @@ MySensitiveDetector::MySensitiveDetector(G4String name) : G4VSensitiveDetector(n
     std::ifstream datafile;
     datafile.open("eff.dat");
 
-    while(1)
+    while (true)
     {
         G4double wlen, queff;
 
