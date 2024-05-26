@@ -1,8 +1,9 @@
 #include "detector.hh"
 
-MySensitiveDetector::MySensitiveDetector(G4String name) : G4VSensitiveDetector(name)
-{
-    quEff = new G4PhysicsOrderedFreeVector();
+MySensitiveDetector::MySensitiveDetector(G4String name) : G4VSensitiveDetector(name) {
+    
+    bool spline = true;
+    quEff = new G4PhysicsOrderedFreeVector(spline);
 
     std::ifstream datafile;
     datafile.open("eff.dat");
@@ -22,12 +23,10 @@ MySensitiveDetector::MySensitiveDetector(G4String name) : G4VSensitiveDetector(n
     }
 
     datafile.close();
-
-    //quEff->SetSpline(false);
 }
 
-MySensitiveDetector::~MySensitiveDetector()
-{}
+MySensitiveDetector::~MySensitiveDetector() {
+}
 
 G4bool MySensitiveDetector::ProcessHits(G4Step *aStep, G4TouchableHistory *ROhist)
 {
